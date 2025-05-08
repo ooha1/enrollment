@@ -19,9 +19,9 @@ public class StudentController {
         this.studentServiceImpl = studentServiceImpl;
     }
 
-    @PostMapping("/students")
-    public ResponseEntity<Student> create(@Valid @RequestBody Student student) {
-        Student saveStudent = studentServiceImpl.saveStudent(student);
+    @PostMapping("/addStudent")
+    public ResponseEntity<Student> addStudent(@Valid @RequestBody Student student) {
+        Student saveStudent = studentServiceImpl.addStudent(student);
         return ResponseEntity.status(HttpStatus.CREATED).body(saveStudent);
     }
 

@@ -4,6 +4,6 @@ import com.studenthub.course.entity.Student;
 
 public interface StudentService {
 
-    Student saveStudent(Student student);
+    Student addStudent(Student student);
 
 }
