@@ -1,12 +1,12 @@
 package com.studenthub.course.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.studenthub.course.validator.NoNumbers;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -18,7 +18,7 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @NoNumbers
+    @Pattern(regexp = "^\\D*$", message = "Field should not contain numeric characters")
     private String name;
 
     @NotNull(message = "Date Of Birth Must Not Be Null")
