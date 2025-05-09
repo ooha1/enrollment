@@ -1,9 +1,9 @@
 package com.studenthub.course.service;
 
-import com.studenthub.course.entity.Student;
+import com.studenthub.course.contracts.StudentContract;
 
 public interface StudentService {
 
-    Student addStudent(Student student);
+    StudentContract addStudent(StudentContract student);
 
 }

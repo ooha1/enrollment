@@ -1,6 +1,6 @@
 package com.studenthub.course.controller;
 
-import com.studenthub.course.entity.Student;
+import com.studenthub.course.contracts.StudentContract;
 import com.studenthub.course.service.StudentServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -20,8 +20,9 @@ public class StudentController {
     }
 
     @PostMapping("/addStudent")
-    public ResponseEntity<Student> addStudent(@Valid @RequestBody Student student) {
-        Student saveStudent = studentServiceImpl.addStudent(student);
+    public ResponseEntity<StudentContract> addStudent(@Valid @RequestBody StudentContract student) {
+
+        StudentContract saveStudent = studentServiceImpl.addStudent(student);
         return ResponseEntity.status(HttpStatus.CREATED).body(saveStudent);
     }
 
