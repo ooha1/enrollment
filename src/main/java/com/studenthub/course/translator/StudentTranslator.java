@@ -3,12 +3,10 @@ package com.studenthub.course.translator;
 import com.studenthub.course.contracts.StudentContract;
 import com.studenthub.course.entity.Student;
 import com.studenthub.course.exception.InvalidDateFormatException;
-import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-@Component
 public class StudentTranslator {
 
     public static Student toStudent(StudentContract contract) {
