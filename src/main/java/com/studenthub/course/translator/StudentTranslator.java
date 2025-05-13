@@ -31,8 +31,9 @@ public class StudentTranslator {
         contract.setName(student.getName());
 
         LocalDate dateOfBirth = student.getDateOfBirth();
-        contract.setDateOfBirth(dateOfBirth.toString());
-
+        if (null != dateOfBirth) {
+            contract.setDateOfBirth(dateOfBirth.toString());
+        }
         return contract;
     }
 }
