@@ -21,9 +21,9 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentContract addStudent(StudentContract student) {
-        Student studentContract = StudentTranslator.toStudent(student);
-        Student saveStudent = studentRepository.save(studentContract);
+    public StudentContract addStudent(StudentContract studentContract) {
+        Student student = StudentTranslator.toStudent(studentContract);
+        Student saveStudent = studentRepository.save(student);
         return StudentTranslator.toStudentContract(saveStudent);
     }
 
