@@ -30,7 +30,7 @@ public class StudentController {
         return ResponseEntity.status(HttpStatus.OK).body(studentContracts);
     }
 
-    @GetMapping("/extremes/{type}")
+    @GetMapping("/extremes")
     public ResponseEntity<List<StudentContract>> getStudentsAgeExtremes(@RequestParam(required = false) String type) {
         List<StudentContract> studentContracts = studentServiceImpl.findStudentsAgeExtremes(type);
         return ResponseEntity.status(HttpStatus.OK).body(studentContracts);
