@@ -18,20 +18,20 @@ public class StudentController {
         this.studentServiceImpl = studentServiceImpl;
     }
 
-    @PostMapping("/addStudent")
+    @PostMapping("/students")
     public ResponseEntity<StudentContract> addStudent(@Valid @RequestBody StudentContract student) {
         StudentContract saveStudent = studentServiceImpl.addStudent(student);
         return ResponseEntity.status(HttpStatus.CREATED).body(saveStudent);
     }
 
-    @PutMapping("/allStudents")
+    @GetMapping("/students")
     public ResponseEntity<List<StudentContract>> allStudents() {
         List<StudentContract> studentContracts = studentServiceImpl.allStudents();
         return ResponseEntity.status(HttpStatus.OK).body(studentContracts);
     }
 
-    @PutMapping("/extremes/{type}")
-    public ResponseEntity<List<StudentContract>> getStudentsAgeExtremes(@PathVariable String type) {
+    @GetMapping("/extremes/{type}")
+    public ResponseEntity<List<StudentContract>> getStudentsAgeExtremes(@RequestParam(required = false) String type) {
         List<StudentContract> studentContracts = studentServiceImpl.findStudentsAgeExtremes(type);
         return ResponseEntity.status(HttpStatus.OK).body(studentContracts);
     }
