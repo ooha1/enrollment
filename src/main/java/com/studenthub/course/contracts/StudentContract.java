@@ -20,5 +20,4 @@ public class StudentContract {
     @NotNull(message = "Date Of Birth Must Not Be Null")
     private String dateOfBirth;
 
-
 }

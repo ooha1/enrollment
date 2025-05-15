@@ -1,0 +1,10 @@
+INSERT INTO studentmanagementcourse.student (id, name, date_of_birth) VALUES (1, 'Alia', '2001-12-01');
+INSERT INTO studentmanagementcourse.student (id, name, date_of_birth) VALUES (2, 'Bob', '2003-7-01');
+INSERT INTO studentmanagementcourse.student (id, name, date_of_birth) VALUES (3, 'Chad', '2002-6-09');
+INSERT INTO studentmanagementcourse.student (id, name, date_of_birth) VALUES (4, 'Danny', '2003-7-01');
+INSERT INTO studentmanagementcourse.student (id, name, date_of_birth) VALUES (5, 'Ele', '2000-7-01');
+INSERT INTO studentmanagementcourse.student (id, name, date_of_birth) VALUES (6, 'File', '2013-7-01');
+INSERT INTO studentmanagementcourse.student (id, name, date_of_birth) VALUES (7, 'Garry', '2002-8-10');
+INSERT INTO studentmanagementcourse.student (id, name, date_of_birth) VALUES (8, 'Honey', '1998-7-01');
+INSERT INTO studentmanagementcourse.student (id, name, date_of_birth) VALUES (9, 'Ion', '1997-09-01');
+INSERT INTO studentmanagementcourse.student (id, name, date_of_birth) VALUES (10, 'Jock', '1996-10-01');
