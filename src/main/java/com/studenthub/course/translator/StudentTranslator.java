@@ -23,15 +23,11 @@ public class StudentTranslator {
     }
 
     public static StudentContract toStudentContract(Student student) {
-
         StudentContract contract = new StudentContract();
+
         contract.setId(student.getId());
         contract.setName(student.getName());
-
-        LocalDate dateOfBirth = student.getDateOfBirth();
-        if (null != dateOfBirth) {
-            contract.setDateOfBirth(dateOfBirth.toString());
-        }
+        contract.setDateOfBirth(student.getDateOfBirth().toString());
         return contract;
     }
 }

@@ -4,6 +4,8 @@ import com.studenthub.course.contracts.StudentContract;
 import com.studenthub.course.entity.Student;
 import com.studenthub.course.repository.StudentRepository;
 import com.studenthub.course.translator.StudentTranslator;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -29,13 +31,12 @@ public class StudentServiceImpl implements StudentService {
 
 
     @Override
-    public List<StudentContract> allStudents() {
-        Iterable<Student> students = studentRepository.findAll();
+    public List<StudentContract> allStudents(int page, int size ) {
+        Iterable<Student> students = studentRepository.findAll(PageRequest.of(page, size));
         List<StudentContract> contracts = new ArrayList<StudentContract>();
         for (Student student : students) {
             contracts.add(StudentTranslator.toStudentContract(student));
         }
-
         return contracts;
     }
 

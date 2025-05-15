@@ -8,7 +8,7 @@ public interface StudentService {
 
     StudentContract addStudent(StudentContract student);
 
-    List<StudentContract> allStudents();
+    List<StudentContract> allStudents(int page, int size);
 
     List<StudentContract> findStudentsAgeExtremes(String type);
 

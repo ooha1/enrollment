@@ -25,8 +25,8 @@ public class StudentController {
     }
 
     @GetMapping("/students")
-    public ResponseEntity<List<StudentContract>> allStudents() {
-        List<StudentContract> studentContracts = studentServiceImpl.allStudents();
+    public ResponseEntity<List<StudentContract>> allStudents(@RequestParam int page, @RequestParam int size) {
+        List<StudentContract> studentContracts = studentServiceImpl.allStudents(page, size);
         return ResponseEntity.status(HttpStatus.OK).body(studentContracts);
     }
 
