@@ -18,7 +18,7 @@ public class StudentController {
         this.studentServiceImpl = studentServiceImpl;
     }
 
-    @PostMapping("/students")
+    @PostMapping("/student")
     public ResponseEntity<StudentContract> addStudent(@Valid @RequestBody StudentContract student) {
         StudentContract saveStudent = studentServiceImpl.addStudent(student);
         return ResponseEntity.status(HttpStatus.CREATED).body(saveStudent);
