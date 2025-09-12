@@ -1,16 +1,19 @@
 package com.studenthub.course.service;
 
-import com.studenthub.course.contracts.StudentContract;
+import com.studenthub.course.contracts.StudentDto;
 
 import java.util.List;
 
 public interface StudentService {
 
-    StudentContract addStudent(StudentContract student);
+    StudentDto addStudent(StudentDto student);
 
-    List<StudentContract> allStudents(int page, int size);
+    List<StudentDto> allStudents(int page, int size);
 
-    List<StudentContract> findStudentsAgeExtremes(String type);
+    List<StudentDto> findStudentsAgeExtremes(String type);
 
+    StudentDto findStudentById(StudentDto studentDto);
+
+    boolean deleteStudentById(Long id);
 
 }

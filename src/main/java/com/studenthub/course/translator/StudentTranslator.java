@@ -1,6 +1,6 @@
 package com.studenthub.course.translator;
 
-import com.studenthub.course.contracts.StudentContract;
+import com.studenthub.course.contracts.StudentDto;
 import com.studenthub.course.entity.Student;
 import com.studenthub.course.exception.InvalidDateFormatException;
 
@@ -9,12 +9,12 @@ import java.time.format.DateTimeParseException;
 
 public class StudentTranslator {
 
-    public static Student toStudent(StudentContract contract) {
+    public static Student mapToStudentRequest(StudentDto studentDto) {
         Student student = new Student();
-        student.setId(contract.getId());
-        student.setName(contract.getName());
+        student.setId(studentDto.getId());
+        student.setName(studentDto.getName());
         try {
-            String dateOfBirth = contract.getDateOfBirth();
+            String dateOfBirth = studentDto.getDateOfBirth();
             student.setDateOfBirth(LocalDate.parse(dateOfBirth));
         } catch (DateTimeParseException ex) {
             throw new InvalidDateFormatException("Invalid date format: " + ex.getMessage());
@@ -22,13 +22,13 @@ public class StudentTranslator {
         return student;
     }
 
-    public static StudentContract toStudentContract(Student student) {
-        StudentContract contract = new StudentContract();
+    public static StudentDto mapToStudentResponse(Student student) {
+        StudentDto studentDto = new StudentDto();
 
-        contract.setId(student.getId());
-        contract.setName(student.getName());
-        contract.setDateOfBirth(student.getDateOfBirth().toString());
-        return contract;
+        studentDto.setId(student.getId());
+        studentDto.setName(student.getName());
+        studentDto.setDateOfBirth(student.getDateOfBirth().toString());
+        return studentDto;
     }
 }
 

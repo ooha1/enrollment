@@ -1,7 +1,7 @@
 package com.studenthub.course.service;
 
 import com.studenthub.course.constants.Type;
-import com.studenthub.course.contracts.StudentContract;
+import com.studenthub.course.contracts.StudentDto;
 import com.studenthub.course.entity.Student;
 import com.studenthub.course.repository.StudentRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,11 +30,11 @@ public class StudentServiceImplTest {
     @InjectMocks
     private StudentServiceImpl studentService;
 
-    StudentContract studentContract;
+    StudentDto studentDto;
 
     @BeforeEach
     void setUp() {
-        studentContract = getStudentContract();
+        studentDto = getStudentContract();
     }
 
     @Test
@@ -47,9 +47,9 @@ public class StudentServiceImplTest {
 
         Mockito.when(studentRepository.save(Mockito.any(Student.class))).thenReturn(student);
 
-        StudentContract addedStudent = studentService.addStudent(studentContract);
+        StudentDto addedStudent = studentService.addStudent(studentDto);
 
-        assertEquals(studentContract.getName(), addedStudent.getName());
+        assertEquals(studentDto.getName(), addedStudent.getName());
     }
 
     @Test
@@ -63,10 +63,10 @@ public class StudentServiceImplTest {
 
         Mockito.when(studentRepository.findAll(PageRequest.of(1, 1))).thenReturn(studentPage);
 
-        List<StudentContract> studentContracts = studentService.allStudents(1, 1);
+        List<StudentDto> studentDtos = studentService.allStudents(1, 1);
 
-        assertEquals(2, studentContracts.size());
-        assertEquals("ooha", studentContracts.get(0).getName());
+        assertEquals(2, studentDtos.size());
+        assertEquals("ooha", studentDtos.get(0).getName());
     }
 
     @Test
@@ -79,9 +79,9 @@ public class StudentServiceImplTest {
 
         Mockito.when(studentRepository.findOldestStudents()).thenReturn(students);
 
-        List<StudentContract> studentContracts = studentService.findStudentsAgeExtremes(Type.OLDEST.name());
+        List<StudentDto> studentDtos = studentService.findStudentsAgeExtremes(Type.OLDEST.name());
 
-        assertEquals("chiki", studentContracts.get(1).getName());
+        assertEquals("chiki", studentDtos.get(1).getName());
     }
 
 

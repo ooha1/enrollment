@@ -1,7 +1,7 @@
 package com.studenthub.course.service;
 
 import com.studenthub.course.constants.Type;
-import com.studenthub.course.contracts.StudentContract;
+import com.studenthub.course.contracts.StudentDto;
 import com.studenthub.course.entity.Student;
 import com.studenthub.course.repository.StudentRepository;
 import com.studenthub.course.translator.StudentTranslator;
@@ -23,26 +23,26 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentContract addStudent(StudentContract studentContract) {
-        Student student = StudentTranslator.toStudent(studentContract);
+    public StudentDto addStudent(StudentDto studentDto) {
+        Student student = StudentTranslator.mapToStudentRequest(studentDto);
         Student saveStudent = studentRepository.save(student);
-        return StudentTranslator.toStudentContract(saveStudent);
+        return StudentTranslator.mapToStudentResponse(saveStudent);
     }
 
 
     @Override
-    public List<StudentContract> allStudents(int page, int size) {
+    public List<StudentDto> allStudents(int page, int size) {
         Iterable<Student> students = studentRepository.findAll(PageRequest.of(page, size));
-        List<StudentContract> contracts = new ArrayList<StudentContract>();
+        List<StudentDto> contracts = new ArrayList<StudentDto>();
         for (Student student : students) {
-            contracts.add(StudentTranslator.toStudentContract(student));
+            contracts.add(StudentTranslator.mapToStudentResponse(student));
         }
         return contracts;
     }
 
     @Override
-    public List<StudentContract> findStudentsAgeExtremes(String type) {
-        List<StudentContract> contracts = new ArrayList<StudentContract>();
+    public List<StudentDto> findStudentsAgeExtremes(String type) {
+        List<StudentDto> contracts = new ArrayList<StudentDto>();
 
         if (type.equalsIgnoreCase(Type.YOUNGEST.name())) {
             List<Student> youngestStudent = studentRepository.findYoungestStudents();
@@ -59,4 +59,26 @@ public class StudentServiceImpl implements StudentService {
         }
     }
 
+
+    @Override
+    public StudentDto findStudentById(StudentDto studentDto) {
+        Student student = StudentTranslator.mapToStudentRequest(studentDto);
+
+        Student existingStudent = studentRepository.findById(student.getId()).get();
+        existingStudent.setId(student.getId());
+        existingStudent.setName(student.getName());
+        existingStudent.setDateOfBirth(student.getDateOfBirth());
+
+        Student updatedStudent = studentRepository.save(existingStudent);
+        return StudentTranslator.mapToStudentResponse(updatedStudent);
+    }
+
+    @Override
+    public boolean deleteStudentById(Long id) {
+        if (studentRepository.existsById(id)) {
+            studentRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
 }

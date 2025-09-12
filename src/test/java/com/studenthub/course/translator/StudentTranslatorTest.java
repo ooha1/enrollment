@@ -1,6 +1,6 @@
 package com.studenthub.course.translator;
 
-import com.studenthub.course.contracts.StudentContract;
+import com.studenthub.course.contracts.StudentDto;
 import com.studenthub.course.entity.Student;
 import com.studenthub.course.exception.InvalidDateFormatException;
 import org.junit.jupiter.api.Test;
@@ -17,22 +17,22 @@ public class StudentTranslatorTest {
 
     @Test
     public void TestToStudent() {
-        StudentContract studentContract = new StudentContract();
-        studentContract.setId(1);
-        studentContract.setName("Ooha");
-        studentContract.setDateOfBirth("2000-12-01");
+        StudentDto studentDto = new StudentDto();
+        studentDto.setId(1);
+        studentDto.setName("Ooha");
+        studentDto.setDateOfBirth("2000-12-01");
 
-        assertEquals(LocalDate.parse("2000-12-01"), StudentTranslator.toStudent(studentContract).getDateOfBirth());
+        assertEquals(LocalDate.parse("2000-12-01"), StudentTranslator.mapToStudentRequest(studentDto).getDateOfBirth());
     }
 
     @Test
     public void TestToStudentWithInvalidStudentDateOfBirth() {
-        StudentContract studentContract = new StudentContract();
-        studentContract.setId(1);
-        studentContract.setName("Ooha");
-        studentContract.setDateOfBirth("2000-19-01");
+        StudentDto studentDto = new StudentDto();
+        studentDto.setId(1);
+        studentDto.setName("Ooha");
+        studentDto.setDateOfBirth("2000-19-01");
 
-        assertThrows(InvalidDateFormatException.class, () -> StudentTranslator.toStudent(studentContract));
+        assertThrows(InvalidDateFormatException.class, () -> StudentTranslator.mapToStudentRequest(studentDto));
     }
 
     @Test
@@ -42,6 +42,6 @@ public class StudentTranslatorTest {
         student.setName("Ooha");
         student.setDateOfBirth(LocalDate.parse("2000-12-01"));
 
-        assertEquals("2000-12-01", StudentTranslator.toStudentContract(student).getDateOfBirth());
+        assertEquals("2000-12-01", StudentTranslator.mapToStudentResponse(student).getDateOfBirth());
     }
 }

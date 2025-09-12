@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class StudentContract {
+public class StudentDto {
     private long id;
 
     @Pattern(regexp = "^\\D*$", message = "Field should not contain numeric characters")
